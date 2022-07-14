@@ -1,0 +1,349 @@
+﻿@{
+    Page.Title = "Manage Queues";
+    Layout = "~/_SiteLayout.cshtml";
+}
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#sortable").sortable({
+            items: 'tr:not(tr:first-child)',
+            cursor: 'pointer',
+            axis: 'y',
+            dropOnEmpty: false,
+            start: function (e, ui) {
+                ui.item.addClass("selected");
+            },
+            stop: function (e, ui) {
+                ui.item.removeClass("selected");
+                $(this).find("tr").each(function (index) {
+                    if (index > 0) {
+                        $(this).find("td").eq(0).html(index);
+                    }
+                });
+            }
+        });
+    });
+
+    function Show() {
+        $("#QUEUE").addClass("blur");
+        $("#editScrn1").show();
+    }
+    function Hide() {
+        $("#editScrn1").hide();
+        $("#QUEUE").removeClass("blur");
+    }
+    $(document).ready(function () {
+        $("#editScrn1").hide();
+    });
+</script>
+
+<style type="text/css">
+    table thead td {
+        font-weight: bold
+    }
+
+    table th, table td {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .selected {
+        background-color: #666;
+        color: #fff;
+    }
+
+    .ctr {
+        text-align: center
+    }
+
+    .smCol {
+        width: 8%;
+        text-align: center
+    }
+    
+    .blur{ backdrop-filter:blur(5px); filter:blur(5px);}
+
+    #editScrn1{
+        background:lightgray;
+        position:absolute;
+        left:20%;top:100px;
+        border-radius: 15px;
+    }
+</style>
+
+
+<div id="QUEUE">
+    <div>Default item is the last in this list. <a href="javascript:Show()">&#10133; click here to add an item</a>. Drag and drop items to reorder priority.</div>
+
+
+    <div>
+        <table id="sortable" style="width:100%;">
+            <thead>
+                <tr title="Drag to change">
+                    <td width="10%" style="width:10%;text-align:center">Process Order</td>
+                    <td title="Queue Name">Name</td>
+                    <td class="smCol">Permits</td>
+                    <td class="smCol">Envelopes</td>
+                    <td class="smCol">Statuses</td>
+                    <td class="smCol">Ammend<br />Requests</td>
+                    <td class="smCol">Action</td>
+                </tr>
+            </thead>
+            <tr>
+                <td style="text-align: center">1</td>
+                <td>Approved</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">2</td>
+                <td>Ammend Requests</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">3</td>
+                <td>PO Pending Payment</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">4</td>
+                <td>Customer Pending Payment</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">5</td>
+                <td>Internal Pending</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">6</td>
+                <td>Bridge Study Pass/Fail</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">7</td>
+                <td>Bridge Analysis Running</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">8</td>
+                <td>Bridge Office Reviewing</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">9</td>
+                <td>Waiting On Customer Response</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">10</td>
+                <td>Route Survey Pending</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">11</td>
+                <td>Emergency Permits</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">12</td>
+                <td>Superload</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">13</td>
+                <td>Routine</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">14</td>
+                <td>Problem Queue</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">15</td>
+                <td>WIP</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
+<div id="editScrn1" width="75%">
+    <form id="f1">
+        <table width="100%">
+            <tr>
+                <td><b>Edit/Add</b></td>
+                <td width="100%" style="text-align:right">
+                    <a href="javascript:Hide()">Close</a>
+                    | <a href="javascript:Hide()">Save</a>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td>
+                    <table>
+                        <tr><td><b>Queue ID#: 8675309</b></td></tr>
+                        <tr><td>Queue Name: <input type="text" width="40" /></td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; Allow ODOT users to access permits out of order for this queue?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; This queue will be used to display local permits?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; This queue will be used to display "Ammend Requests" permits?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; The permits in this queue will be used in "Balancing Mode"?</td></tr>
+                    </table>
+                </td>
+                <td>
+                    Description:<br /><textarea id="desc" rows="10" cols="30">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in.
+</textarea>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Permits:</b> <a href="">(+ add)</a>
+                    <table>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Boat - Blanket</option>
+                                    <option>Trailer - Blanket</option>
+                                </select>
+                            </td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Envelopes:</b> <a href="">(+ add)</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Measurement Type</td>
+                                <td>Min</td>
+                                <td>Max</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Gross Vehicle Weight</option>
+                                    <option>something</option>
+                                </select>
+                            </td>
+                            <td><input type="text" width="10" size="10" value="8000" /></td>
+                            <td><input type="text" width="10" size="10" value="12000" /></td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Statuses:</b> <a href="">(+ add)</a>
+                    <table>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Approved</option>
+                                    <option>Pending</option>
+                                    <option>Denied</option>
+                                </select>
+                            </td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%" style="text-align:right">
+                    <a href="javascript:Hide()">Close</a>
+                    | <a href="javascript:Hide()">Save</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

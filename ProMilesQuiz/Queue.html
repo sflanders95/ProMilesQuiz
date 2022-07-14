@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Manage Queues - My ASP.NET Web Page</title>
+        <link href="/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+        <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <script src="/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="/Scripts/jquery-ui-1.12.1.js"></script>
+        <script src="/Scripts/modernizr-2.8.3.js"></script>
+        <meta name="viewport" content="width=device-width" />
+
+        <style>
+            html {
+    background-color: #e2e2e2;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    border-top: solid 10px #000;
+    color: #333;
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    }
+
+    a:hover {
+        background-color: #c7d1d6;
+    }
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+mark {
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+#body {
+    background-color: #efeeef;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+    .main-content {
+        background: url("../Images/accent.png") no-repeat;
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+    .featured + .main-content {
+        background: url("../Images/heroAccent.png") no-repeat;
+    }
+
+header .content-wrapper {
+    padding-top: 20px; 
+}
+
+footer {
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+    height: 100px;
+}
+
+
+/* site title
+----------------------------------------------------------*/
+.site-title {
+    color: #c8c8c8;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+.site-title a, .site-title a:hover, .site-title a:active {
+    background: none;
+    color: #c8c8c8;
+    outline: none;
+    text-decoration: none;
+}
+
+
+/* login
+----------------------------------------------------------*/
+#login {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+    #login a.email {
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+
+
+/* menu
+----------------------------------------------------------*/
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: right;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+        ul#menu li a {
+            background: none;
+            color: #999;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            color: #333;
+            text-decoration: none;
+        }
+
+
+/* page elements
+----------------------------------------------------------*/
+/* featured */
+.featured {
+    background-color: #fff;
+}
+
+    .featured .content-wrapper {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+
+        .featured hgroup.title h1, .featured hgroup.title h2 {
+            color: #fff;
+        }
+
+        .featured p {
+            font-size: 1.1em;
+        }
+
+/* page titles */
+hgroup.title {
+    margin-bottom: 10px;
+}
+
+hgroup.title h1, hgroup.title h2 {
+    display: inline;
+}
+
+hgroup.title h2 {
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+/* features */
+section.feature {
+    width: 300px;
+    float: left;
+    padding: 10px;
+}
+
+/* ordered list */
+ol.round {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+    ol.round li {
+        margin: 25px 0;
+        padding-left: 45px;
+    }
+
+        ol.round li.zero {
+            background: url("../Images/orderedList0.png") no-repeat;
+        }
+
+        ol.round li.one {
+            background: url("../Images/orderedList1.png") no-repeat;
+        }
+
+        ol.round li.two {
+            background: url("../Images/orderedList2.png") no-repeat;
+        }
+
+        ol.round li.three {
+            background: url("../Images/orderedList3.png") no-repeat;
+        }
+
+        ol.round li.four {
+            background: url("../Images/orderedList4.png") no-repeat;
+        }
+
+        ol.round li.five {
+            background: url("../Images/orderedList5.png") no-repeat;
+        }
+
+        ol.round li.six {
+            background: url("../Images/orderedList6.png") no-repeat;
+        }
+
+        ol.round li.seven {
+            background: url("../Images/orderedList7.png") no-repeat;
+        }
+
+        ol.round li.eight {
+            background: url("../Images/orderedList8.png") no-repeat;
+        }
+
+        ol.round li.nine {
+            background: url("../Images/orderedList9.png") no-repeat;
+        }
+
+/* content */
+article {
+    float: left;
+    width: 70%;
+}
+
+aside {
+    float: right;
+    width: 25%;
+}
+
+    aside ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        aside ul li {
+            background: url("../Images/bullet.png") no-repeat 0 50%;
+            padding: 2px 0 2px 20px;
+        }
+
+.label {
+    font-weight: 700;
+}
+
+/* login page */
+#loginForm {
+    border-right: solid 2px #c8c8c8;
+    float: left;
+    width: 55%;
+}
+
+    #loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
+
+    #loginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
+
+    #loginForm input {
+        width: 250px;
+    }
+
+    #loginForm input[type="checkbox"],
+    #loginForm input[type="submit"],
+    #loginForm input[type="button"],
+    #loginForm button {
+        width: auto;
+    }
+
+#socialLoginForm {
+    margin-left: 40px;
+    float: left;
+    width: 40%;
+}
+
+    #socialLoginForm h2 {
+        margin-bottom:  5px;
+    }
+
+#socialLoginList button {
+    margin-bottom: 12px;
+}
+
+#logoutForm {
+    display: inline;
+}
+
+/* contact */
+.contact h3 {
+    font-size: 1.2em;
+}
+
+.contact p {
+    margin: 5px 0 0 10px;
+}
+
+.contact iframe {
+    border: 1px solid #333;
+    margin: 5px 0 0 10px;
+}
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+input, textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+    input:focus, textarea:focus {
+        border: 1px solid #7ac0da;
+    }
+
+    input[type="checkbox"] {
+        background: transparent;
+        border: inherit;
+        width: auto;
+    }
+
+    input[type="submit"],
+    input[type="button"],
+    button {
+        background-color: #d3dce0;
+        border: 1px solid #787878;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;
+    }
+
+    td input[type="submit"],
+    td input[type="button"],
+    td button {
+        font-size: 1em;
+        padding: 4px;
+        margin-right: 4px;
+    }
+
+/* info and errors */
+.message-info {
+    border: 1px solid;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error {
+    clear: both;
+    color: #e80c4d;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.message-success {
+    color: #7ac0da;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.error {
+    color: #e80c4d;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+/* tables
+----------------------------------------------------------*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+}
+
+th {
+    font-size: 1.2em;
+    text-align: left;
+    border: none 0px;
+    padding-left: 0;
+}
+
+    th a {
+        display: block;
+        position: relative;
+    }
+
+    th a:link, th a:visited, th a:active, th a:hover {
+        color: #333;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0;
+    }
+
+    th a:hover {
+        color: #000;
+    }
+
+    th.asc a, th.desc a {
+        margin-right: .75em;
+    }
+
+    th.asc a:after, th.desc a:after {
+        display: block;
+        position: absolute;
+        right: 0em;
+        top: 0;
+        font-size: 0.75em;
+    }
+
+    th.asc a:after {
+        content: '▲';
+    }
+
+    th.desc a:after {
+        content: '▼';
+    }
+
+td {
+    padding: 0.25em 2em 0.25em 0em;
+    border: 0 none;
+}
+
+tr.pager td {
+    padding: 0 0.25em 0 0;
+}
+
+
+/********************
+*   Mobile Styles   *
+********************/
+@media only screen and (max-width: 850px) {
+
+    /* header
+    ----------------------------------------------------------*/
+    header .float-left,
+    header .float-right {
+        float: none;
+    }
+
+    /* logo */
+    header .site-title {
+        margin: 10px;
+        text-align: center;
+    }
+
+    /* login */
+    #login {
+        font-size: .85em;
+        margin: 0 0 12px;
+        text-align: center;
+    }
+
+        #login ul {
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        #login li {
+            display: inline;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login a {
+            background: none;
+            color: #999;
+            font-weight: 600;
+            margin: 2px;
+            padding: 0;
+        }
+
+        #login a:hover {
+            color: #333;
+        }
+
+    /* menu */
+    nav {
+        margin-bottom: 5px;
+    }
+
+    ul#menu {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        ul#menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+
+    /* main layout
+    ----------------------------------------------------------*/
+    .main-content,
+    .featured + .main-content {
+        background-position: 10px 0;
+    }
+
+    .content-wrapper {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .featured .content-wrapper {
+        padding: 10px;
+    }
+
+    /* page content */
+    article, aside {
+        float: none;
+        width: 100%;
+    }
+
+    /* ordered list */
+    ol.round {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        ol.round li {
+            padding-left: 10px;
+            margin: 25px 0;
+        }
+
+            ol.round li.zero,
+            ol.round li.one,
+            ol.round li.two,
+            ol.round li.three,
+            ol.round li.four,
+            ol.round li.five,
+            ol.round li.six,
+            ol.round li.seven,
+            ol.round li.eight,
+            ol.round li.nine {
+                background: none;
+            }
+
+     /* features */
+     section.feature {
+        float: none;
+        padding: 10px;
+        width: auto;
+     }
+
+        section.feature img {
+            color: #999;
+            content: attr(alt);
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+    /* forms */
+    input {
+        width: 90%;
+    }
+
+    /* login page */
+    #loginForm {
+        border-right: none;
+        float: none;
+        width: auto;
+    }
+
+        #loginForm .validation-error {
+            display: block;
+            margin-left: 15px;
+        }
+
+    #socialLoginForm {
+        margin-left: 0;
+        float: none;
+        width: auto;
+    }
+
+
+    /* footer
+    ----------------------------------------------------------*/
+    footer .float-left,
+    footer .float-right {
+        float: none;
+    }
+
+    footer {
+        text-align: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+        footer p {
+            margin: 0;
+        }
+}
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"><a href="/">ProMiles Logo Here</a></p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                            <ul>
+                                <li><a href="/Account/Register">Register</a></li>
+                                <li><a href="/Account/Login">Log in</a></li>
+                            </ul>
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/About">About</a></li>
+                            <li><a href="/Contact">Contact</a></li>
+                            <li><a href="/ManageQueues">Queues</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            
+            <section class="content-wrapper main-content clear-fix">
+                
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#sortable").sortable({
+            items: 'tr:not(tr:first-child)',
+            cursor: 'pointer',
+            axis: 'y',
+            dropOnEmpty: false,
+            start: function (e, ui) {
+                ui.item.addClass("selected");
+            },
+            stop: function (e, ui) {
+                ui.item.removeClass("selected");
+                $(this).find("tr").each(function (index) {
+                    if (index > 0) {
+                        $(this).find("td").eq(0).html(index);
+                    }
+                });
+            }
+        });
+    });
+
+    function Show() {
+        $("#QUEUE").addClass("blur");
+        $("#editScrn1").show();
+    }
+    function Hide() {
+        $("#editScrn1").hide();
+        $("#QUEUE").removeClass("blur");
+    }
+    $(document).ready(function () {
+        $("#editScrn1").hide();
+    });
+</script>
+
+<style type="text/css">
+    table thead td {
+        font-weight: bold
+    }
+
+    table th, table td {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .selected {
+        background-color: #666;
+        color: #fff;
+    }
+
+    .ctr {
+        text-align: center
+    }
+
+    .smCol {
+        width: 8%;
+        text-align: center
+    }
+    
+    .blur{ backdrop-filter:blur(5px); filter:blur(5px);}
+
+    #editScrn1{
+        background:lightgray;
+        position:absolute;
+        left:20%;top:100px;
+        border-radius: 15px;
+    }
+</style>
+
+
+<div id="QUEUE">
+    <div>Default item is the last in this list. <a href="javascript:Show()">&#10133; click here to add an item</a>. Drag and drop items to reorder priority.</div>
+
+
+    <div>
+        <table id="sortable" style="width:100%;">
+            <thead>
+                <tr title="Drag to change">
+                    <td width="10%" style="width:10%;text-align:center">Process Order</td>
+                    <td title="Queue Name">Name</td>
+                    <td class="smCol">Permits</td>
+                    <td class="smCol">Envelopes</td>
+                    <td class="smCol">Statuses</td>
+                    <td class="smCol">Ammend<br />Requests</td>
+                    <td class="smCol">Action</td>
+                </tr>
+            </thead>
+            <tr>
+                <td style="text-align: center">1</td>
+                <td>Approved</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">2</td>
+                <td>Ammend Requests</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">3</td>
+                <td>PO Pending Payment</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">4</td>
+                <td>Customer Pending Payment</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">5</td>
+                <td>Internal Pending</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">6</td>
+                <td>Bridge Study Pass/Fail</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">7</td>
+                <td>Bridge Analysis Running</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">8</td>
+                <td>Bridge Office Reviewing</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">9</td>
+                <td>Waiting On Customer Response</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">10</td>
+                <td>Route Survey Pending</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">11</td>
+                <td>Emergency Permits</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">12</td>
+                <td>Superload</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">13</td>
+                <td>Routine</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&#10003;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">14</td>
+                <td>Problem Queue</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+            <tr>
+                <td style="text-align: center">15</td>
+                <td>WIP</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr">&nbsp;</td>
+                <td class="ctr"><a href="javascript:Show()">edit</a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
+<div id="editScrn1" width="75%">
+    <form id="f1">
+        <table width="100%">
+            <tr>
+                <td><b>Edit/Add</b></td>
+                <td width="100%" style="text-align:right">
+                    <a href="javascript:Hide()">Close</a>
+                    | <a href="javascript:Hide()">Save</a>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td>
+                    <table>
+                        <tr><td><b>Queue ID#: 8675309</b></td></tr>
+                        <tr><td>Queue Name: <input type="text" width="40" /></td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; Allow ODOT users to access permits out of order for this queue?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; This queue will be used to display local permits?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; This queue will be used to display "Ammend Requests" permits?</td></tr>
+                        <tr><td><input type="checkbox" /> &nbsp; The permits in this queue will be used in "Balancing Mode"?</td></tr>
+                    </table>
+                </td>
+                <td>
+                    Description:<br /><textarea id="desc" rows="10" cols="30">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in.
+</textarea>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Permits:</b> <a href="">(+ add)</a>
+                    <table>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Boat - Blanket</option>
+                                    <option>Trailer - Blanket</option>
+                                </select>
+                            </td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Envelopes:</b> <a href="">(+ add)</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Measurement Type</td>
+                                <td>Min</td>
+                                <td>Max</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Gross Vehicle Weight</option>
+                                    <option>something</option>
+                                </select>
+                            </td>
+                            <td><input type="text" width="10" size="10" value="8000" /></td>
+                            <td><input type="text" width="10" size="10" value="12000" /></td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <b>Statuses:</b> <a href="">(+ add)</a>
+                    <table>
+                        <tr>
+                            <td width="90%">
+                                <select style="width:200px">
+                                    <option>Approved</option>
+                                    <option>Pending</option>
+                                    <option>Denied</option>
+                                </select>
+                            </td>
+                            <td width="40px" class="ctr"><a href="" title="delete">✘</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <td width="100%" style="text-align:right">
+                    <a href="javascript:Hide()">Close</a>
+                    | <a href="javascript:Hide()">Save</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; 2022 - My ASP.NET Web Page</p>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>
